@@ -1,0 +1,32 @@
+<script>
+$( document ).ready(function() {
+    var getUrlParameter = function getUrlParameter(sParam) {
+    var sPageURL = window.location.search.substring(1),
+        sURLVariables = sPageURL.split('&'),
+        sParameterName,
+        i;
+
+    for (i = 0; i < sURLVariables.length; i++) {
+        sParameterName = sURLVariables[i].split('=');
+
+        if (sParameterName[0] === sParam) {
+            return sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
+        }
+    }
+    return false;
+};
+        
+var source = getUrlParameter('utm_source');
+console.log('utm_source: ', source);
+var medium = getUrlParameter('utm_medium');
+console.log('utm_medium ', medium);
+var campaign = getUrlParameter('utm_campaign');
+console.log('utm_campaign ', campaign);
+var content = getUrlParameter('utm_content');
+console.log('utm_content ', content);
+document.querySelector('input[placeholder="UTM SOURCE"]').value = source;
+document.querySelector('input[placeholder="UTM MEDIUM"]').value = medium;
+document.querySelector('input[placeholder="UTM CAMPAIGN"]').value = campaign;
+document.querySelector('input[placeholder="UTM CONTENT"]').value = content;
+    });
+</script>
